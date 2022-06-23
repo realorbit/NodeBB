@@ -30,6 +30,7 @@ async function registerAndLoginUser(req, res, userData) {
 		userData,
 		interstitials: [],
 	});
+	// TODO: Fires hook to set cookie to login user to checklist
 	await plugins.hooks.fire('filter:login.continue', { userData, req });
 
 	// If interstitials are found, save registration attempt into session and abort
