@@ -30,6 +30,7 @@ async function registerAndLoginUser(req, res, userData) {
 		userData,
 		interstitials: [],
 	});
+	await plugins.hooks.fire('filter:login.continue', { userData, req });
 
 	// If interstitials are found, save registration attempt into session and abort
 	const deferRegistration = data.interstitials.length;
