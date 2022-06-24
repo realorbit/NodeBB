@@ -54,6 +54,7 @@ async function registerAndLoginUser(req, res, userData) {
 	const uid = await user.create(userData);
 	// TODO: Fires hook to set cookie to login user to checklist
 	userData.uid = uid;
+	console.log('Firing with uid ' + userData.uid);
 	await plugins.hooks.fire('filter:login.continue', { userData, req });
 
 	if (res.locals.processLogin) {
